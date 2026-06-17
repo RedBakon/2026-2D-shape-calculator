@@ -185,8 +185,13 @@ while Question_want < Questions:
             if radius == "xxx":
                 Question_want += 1
 
+    # if the user picked exit code skip.
+    if Question_want == Questions:
+        pass
     # if the user put in an impossible triangle
-    if shape_picked != "triangle":
+    elif shape_picked != "triangle":
+        pass
+    elif area_or_perimeter == "area":
         pass
     elif (triangle_side1 + triangle_side2) <= triangle_side3 or (triangle_side2 + triangle_side3) <= triangle_side1 or (triangle_side1 + triangle_side3) <= triangle_side2:
         print("This is a impossible triangle, please try again")
@@ -236,7 +241,7 @@ while Question_want < Questions:
         if shape_picked == "circle":
             if area_or_perimeter == "area":
                 answer = 3.14 * (radius * radius)
-                area_question = f"3.14 * ({radius} * {radius}"
+                area_question = f"3.14 * ({radius} * {radius})"
                 area_shape_picked == "circle"
             if area_or_perimeter == "perimeter":
                 answer = 2 * 3.14 * radius
@@ -287,24 +292,25 @@ if Question_want == 1:
 else:
     # the dict for area and perimeter
     all_area_dict = {
-        "Shapes": area_shape_picked,
-        "Area Question": all_area_questions,
+        "Shapes /": area_shape_picked,
+        "Area Question /": all_area_questions,
         "Area Answers": all_area_answers,
     }
     all_perimeter_dict = {
-         "Shapes": perimeter_shape_picked,
-        "Perimeter Question": all_perimeter_questions,
+         "Shapes /": perimeter_shape_picked,
+        "Perimeter Question /": all_perimeter_questions,
         "Perimeter Answers": all_perimeter_answers
     }
 
     # Creating the dataframe
     all_area_frame = pandas.DataFrame(all_area_dict)
-    all_perimeter_frame = pandas.DataFrame(all_perimeter_dict)\
+    all_perimeter_frame = pandas.DataFrame(all_perimeter_dict)
 
     # Printing the dataframe
-    print(make_statement("The Area Questions", "---"))
+    print(make_statement("The Area Question(s)", "---"))
     print(all_area_frame)
     print()
+    print(make_statement("The Perimeter Question(s)", "---"))
     print(all_perimeter_frame)
 
 
