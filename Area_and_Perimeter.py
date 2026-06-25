@@ -92,6 +92,8 @@ Question_want = 0
 area_answer = 1
 perimeter_answer = 1
 
+# pi
+pi = 3.14159
 
 # Initialise area & perimeter check (to check for if area or perimeter was asked during in the calculator)
 check_area_question = 0
@@ -240,12 +242,12 @@ while Question_want < Questions:
         # calculations for a circle
         if shape_picked == "circle":
             if area_or_perimeter == "area":
-                answer = 3.14 * (radius * radius)
-                area_question = f"3.14 * ({radius} * {radius})"
+                answer = pi * (radius * radius)
+                area_question = f"π * ({radius} * {radius})"
                 area_shape_picked = "circle"
             if area_or_perimeter == "perimeter":
-                answer = 2 * 3.14 * radius
-                perimeter_question = f"2 * 3.14 * {radius}"
+                answer = 2 * pi * radius
+                perimeter_question = f"2 * π * {radius}"
                 perimeter_shape_picked = "circle"
 
         # changes the answer to an area answer or a perimeter answer depending on what the area or perimeter it was.
