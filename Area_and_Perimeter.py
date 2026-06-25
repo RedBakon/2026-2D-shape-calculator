@@ -75,8 +75,6 @@ def float_check(question, exit_code):
         except ValueError:
             print(error)
 
-
-
 # Main Routine goes here
 
 # Area shapes
@@ -93,11 +91,15 @@ Question_want = 0
 # Initialise area & perimeter answer and area & perimeter shape picked
 area_answer = 1
 perimeter_answer = 1
-area_shape_picked = ""
-perimeter_shape_picked = ""
+
+
+# Initialise area & perimeter check (to check for if area or perimeter was asked during in the calculator)
+check_area_question = 0
+check_perimeter_question = 0
 
 # holding the shapes list (for panda)
-all_shapes = []
+all_area_shapes = []
+all_perimeter_shapes = []
 
 # list for area questions (for panda)
 all_area_questions = []
@@ -120,6 +122,7 @@ print()
 
 # Loop starts here.
 while Question_want < Questions:
+
     # Asks the user what shape they want to pick.
     shape_picked = string_check("What shape do you want to calculate? ", shapes)
     print()
@@ -209,44 +212,44 @@ while Question_want < Questions:
             if area_or_perimeter == "area":
                 answer = length * length
                 area_question = f"{length} * {length}"
-                area_shape_picked == "square"
+                area_shape_picked = "square"
             if area_or_perimeter == "perimeter":
                 answer = 4 * length
                 perimeter_question = f"4 * {length}"
-                perimeter_shape_picked == "square"
+                perimeter_shape_picked = "square"
 
         # calculations for a triangle
         if shape_picked == "triangle":
             if area_or_perimeter == "area":
                 answer = base * height * 0.5
                 area_question = f"{base} * {height} * 0.5"
-                area_shape_picked == "triangle"
+                area_shape_picked = "triangle"
             if area_or_perimeter == "perimeter":
                 answer = triangle_side1 + triangle_side2 + triangle_side3
                 perimeter_question = f"{triangle_side1} + {triangle_side2} + {triangle_side3}"
-                perimeter_shape_picked == "triangle"
+                perimeter_shape_picked = "triangle"
 
         # calculations for a rectangle
         if shape_picked == "rectangle":
             if area_or_perimeter == "area":
                 answer = height * width
                 area_question = f"{height} * {width}"
-                area_shape_picked == "rectangle"
+                area_shape_picked = "rectangle"
             if area_or_perimeter == "perimeter":
                 answer = 2 * (height + width)
                 perimeter_question = f"2 * ({height} + {width})"
-                perimeter_shape_picked == "rectangle"
+                perimeter_shape_picked = "rectangle"
 
         # calculations for a circle
         if shape_picked == "circle":
             if area_or_perimeter == "area":
                 answer = 3.14 * (radius * radius)
                 area_question = f"3.14 * ({radius} * {radius})"
-                area_shape_picked == "circle"
+                area_shape_picked = "circle"
             if area_or_perimeter == "perimeter":
                 answer = 2 * 3.14 * radius
                 perimeter_question = f"2 * 3.14 * {radius}"
-                perimeter_shape_picked == "circle"
+                perimeter_shape_picked = "circle"
 
         # changes the answer to an area answer or a perimeter answer depending on what the area or perimeter it was.
         if area_or_perimeter == "area":
@@ -277,41 +280,54 @@ while Question_want < Questions:
 
     # if it's area append the area question, area answer, and the shape that was picked (vice versa for perimeter)
     if area_or_perimeter == "area":
-        all_shapes.append(area_shape_picked)
+        check_area_question = 1
+        all_area_shapes.append(area_shape_picked)
         all_area_questions.append(area_question)
         all_area_answers.append(area_answer)
     if area_or_perimeter == "perimeter":
-        all_shapes.append(perimeter_shape_picked)
+        check_perimeter_question = 1
+        all_perimeter_shapes.append(perimeter_shape_picked)
         all_perimeter_questions.append(perimeter_question)
         all_perimeter_answers.append(perimeter_answer)
-
 
 # End of loop (panda)
 if Question_want == 1:
     print("You didn't do any questions")
-else:
-    # the dict for area and perimeter
+# checks if an area was asked during the calculator
+if check_area_question == 1:
+    # the dict for area
     all_area_dict = {
-        "Shapes /": area_shape_picked,
+        "Shape /": all_area_shapes,
         "Area Question /": all_area_questions,
-        "Area Answers": all_area_answers,
-    }
-    all_perimeter_dict = {
-         "Shapes /": perimeter_shape_picked,
-        "Perimeter Question /": all_perimeter_questions,
-        "Perimeter Answers": all_perimeter_answers
+        "Area Answer": all_area_answers,
     }
 
-    # Creating the dataframe
+# checks if a perimeter was asked during the calculator
+if check_perimeter_question == 1:
+    # the dict for perimeter
+    all_perimeter_dict = {
+        "Shape /": all_perimeter_shapes,
+        "Perimeter Question /": all_perimeter_questions,
+        "Perimeter Answer": all_perimeter_answers
+    }
+
+# Creating the dataframe
+if check_area_question == 1:
     all_area_frame = pandas.DataFrame(all_area_dict)
+if check_perimeter_question == 1:
     all_perimeter_frame = pandas.DataFrame(all_perimeter_dict)
 
-    # Printing the dataframe
+# Printing the dataframe
+if check_area_question == 1:
     print(make_statement("The Area Question(s)", "---"))
-    print(all_area_frame)
+    print(all_area_frame.to_string(index=False))
     print()
-    print(make_statement("The Perimeter Question(s)", "---"))
-    print(all_perimeter_frame)
 
+if check_perimeter_question == 1:
+    print(make_statement("The Perimeter Question(s)", "---"))
+    print(all_perimeter_frame.to_string(index=False))
+
+print("")
+print("The End!")
 
 
