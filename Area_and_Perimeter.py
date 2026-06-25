@@ -125,7 +125,6 @@ while Question_want < Questions:
 
     # Asks the user what shape they want to pick.
     shape_picked = string_check("What shape do you want to calculate? ", shapes)
-    print()
     # if answer is exit code, break out of loop
     if shape_picked == "xxx":
         Question_want += 1
@@ -136,8 +135,6 @@ while Question_want < Questions:
     else:
         # Asks for Area or Perimeter
         area_or_perimeter = string_check(f"Do you want to calculate Area or Perimeter for the {shape_picked} ", A_or_P)
-        print(f"You Picked {area_or_perimeter}")
-        print()
         # if answer is exit code, break out of loop
         if area_or_perimeter == "xxx":
             Question_want += 1
@@ -262,7 +259,6 @@ while Question_want < Questions:
         pass
     else:
         print(f"The answer is {answer:.2f}")
-        print()
         # remove (s)
         if Questions == 1:
             print(f"That's {Questions} Question!")
