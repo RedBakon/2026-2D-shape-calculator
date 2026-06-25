@@ -252,9 +252,9 @@ while Question_want < Questions:
 
         # changes the answer to an area answer or a perimeter answer depending on what the area or perimeter it was.
         if area_or_perimeter == "area":
-            area_answer = answer
+            area_answer = round(answer, 2)
         if area_or_perimeter == "perimeter":
-            perimeter_answer = answer
+            perimeter_answer = round(answer, 2)
 
     # if the user picked exit code skip.
     if Question_want == Questions:
