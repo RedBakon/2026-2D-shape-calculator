@@ -258,6 +258,7 @@ while Question_want < Questions:
     if Question_want == Questions:
         pass
     else:
+        print("")
         print(f"The answer is {answer:.2f}")
         # remove (s)
         if Questions == 1:
