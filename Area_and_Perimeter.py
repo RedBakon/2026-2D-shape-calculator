@@ -153,12 +153,27 @@ while Question_want < Questions:
         # if the user asked for the exit code
             if length == "xxx":
                 Question_want += 1
+        # if user put in 0
+            if length == 0:
+                print("That can't be right. Please try again.")
+                print()
+                continue
 
         # asking for the base and height if it's area and the sides if it's a perimeter
         if shape_picked == "triangle":
             if area_or_perimeter == "area":
                 base = float_check("What is the base of this triangle? ", "xxx")
+                # if user put in 0
+                if base == 0:
+                    print("That can't be right. Please try again.")
+                    print()
+                    continue
                 height = float_check("What is the height of this triangle? ", "xxx")
+                # if user put in 0
+                if height == 0:
+                    print("That can't be right. Please try again.")
+                    print()
+                    continue
             if area_or_perimeter == "perimeter":
                 triangle_side1 = float_check("What is the length of the triangle first side? ", "xxx")
                 triangle_side2 = float_check("What is the length of the triangle second side? ", "xxx")
@@ -175,10 +190,22 @@ while Question_want < Questions:
         # asks for the length and width if it's a rectangle
         if shape_picked == "rectangle":
             height = float_check("What is the height of this rectangle? ", "xxx")
+            # if user put in 0
+            if height == 0:
+                print("That can't be right. Please try again.")
+                print()
+                continue
             width = float_check("What is the width of this rectangle? ", "xxx")
-        # if the user asked for the exit code
+            # if user put in 0
+            if width == 0:
+                print("That can't be right. Please try again.")
+                print()
+                continue
+
+            # if the user asked for the exit code
             if height == "xxx" or width == "xxx":
                 Question_want += 1
+
 
         # ask for the radius if it's a circle
         if shape_picked == "circle":
@@ -186,6 +213,11 @@ while Question_want < Questions:
         # if the user asked for the exit code
             if radius == "xxx":
                 Question_want += 1
+        # if user put in 0
+            if radius == 0:
+                print("That can't be right. Please try again.")
+                print()
+                continue
 
     # if the user picked exit code skip.
     if Question_want == Questions:
